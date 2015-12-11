@@ -17,12 +17,12 @@
 
 ## Software
 
-We use [platformio](http://platformio.org/) to upload the code to the board.
-
 <p align="center">
 <img src="http://cdn.platformio.org/images/platformio-logo.17fdc3bc.png" width="80">
 <img src="https://www.python.org/static/community_logos/python-powered-w-200x80.png" >
 </p>
+
+We use [platformio](http://platformio.org/) to upload the code to the board.
 
 ```bash
 ~/miniloki$ cd code/platformio/miniloki_omniboard
