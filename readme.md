@@ -13,3 +13,28 @@
 | [3x 48mm Omniwheel for LEGO NXT, Servo](http://www.nexusrobot.com/product.php?id_product=82) | Omniwheel for NXT compatible hub or Axle Centre and servo motor |
 
 ![](loki_2.png)
+
+## Software
+
+We use platformio to upload the code to the board.
+
+[![](http://cdn.platformio.org/images/platformio-logo.17fdc3bc.png)](http://platformio.org/)
+
+```bash
+~/miniloki$ cd code/platformio/miniloki_omniboard
+~/miniloki/code/platformio/miniloki_omniboard$ platformio run
+```
+
+We use Python to control miniloki with a joystick
+
+[![](https://www.python.org/static/community_logos/python-powered-w-200x80.png)](https://www.python.org/)
+
+```bash
+~/miniloki$ cd code/python/
+~/miniloki/code/python$ sudo python -m mini_loki.overmind
+```
+
+```bash
+~/miniloki$ cd code/python/
+~/miniloki/code/python$ sudo python -m mini_loki.agent.client
+```
