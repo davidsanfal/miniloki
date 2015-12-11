@@ -1,6 +1,9 @@
 #Mini loki
 
-![](loki.png)
+<p align="center">
+<img src="loki.png" height="400">
+<img src="loki_2.png" height="400">
+</p>
 
 ## Hardware
 
@@ -12,22 +15,21 @@
 | [3x Pololu Micro Metal Gearmotor Bracket Extended](https://www.pololu.com/product/1089) | Pololu Micro Metal Gearmotor Bracket Extended Pair |
 | [3x 48mm Omniwheel for LEGO NXT, Servo](http://www.nexusrobot.com/product.php?id_product=82) | Omniwheel for NXT compatible hub or Axle Centre and servo motor |
 
-![](loki_2.png)
-
 ## Software
 
-We use platformio to upload the code to the board.
+We use [platformio](http://platformio.org/) to upload the code to the board.
 
-[![](http://cdn.platformio.org/images/platformio-logo.17fdc3bc.png)](http://platformio.org/)
+<p align="center">
+<img src="http://cdn.platformio.org/images/platformio-logo.17fdc3bc.png" width="80">
+<img src="https://www.python.org/static/community_logos/python-powered-w-200x80.png" >
+</p>
 
 ```bash
 ~/miniloki$ cd code/platformio/miniloki_omniboard
 ~/miniloki/code/platformio/miniloki_omniboard$ platformio run
 ```
 
-We use Python to control miniloki with a joystick
-
-[![](https://www.python.org/static/community_logos/python-powered-w-200x80.png)](https://www.python.org/)
+We use [Python](https://www.python.org/) to control miniloki with a joystick
 
 ```bash
 ~/miniloki$ cd code/python/
