@@ -86,7 +86,6 @@ local.properties
 
 *.avi
 *.fcstd1
-arduino/server/conf.h
 */src/config.h
 .pioenvs
 .sconsign.dblite

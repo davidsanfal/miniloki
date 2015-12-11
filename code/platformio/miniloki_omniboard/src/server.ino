@@ -5,49 +5,14 @@
 #include "miniloki/miniloki.h"
 
 
-#define SPEED_PIN_0_1 D2
-#define SPEED_PIN_0_2 D1
-#define SPEED_PIN_1_1 D3
-#define SPEED_PIN_1_2 D4
-#define SPEED_PIN_2_1 D7
-#define SPEED_PIN_2_2 D8
+#define SPEED_PIN_0_1 D3
+#define SPEED_PIN_0_2 D4
+#define SPEED_PIN_1_1 D7
+#define SPEED_PIN_1_2 D8
+#define SPEED_PIN_2_1 D2
+#define SPEED_PIN_2_2 D1
 
-void setup(void)
-{ 
-  Serial.begin(9600);
-  //Wifi configuration
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-  }
-  //Pins configuration
-  pinMode(SPEED_PIN_0_1, OUTPUT);
-  pinMode(SPEED_PIN_0_2, OUTPUT);
-  pinMode(SPEED_PIN_1_1, OUTPUT);
-  pinMode(SPEED_PIN_1_2, OUTPUT);
-  pinMode(SPEED_PIN_2_1, OUTPUT);
-  pinMode(SPEED_PIN_2_2, OUTPUT);
-}
-
-void loop(void)
-{
-  analogWrite(SPEED_PIN_0_1, 1024);
-  analogWrite(SPEED_PIN_0_2, 0);
-  analogWrite(SPEED_PIN_1_1, 1024);
-  analogWrite(SPEED_PIN_1_2, 0);
-  analogWrite(SPEED_PIN_2_1, 1024);
-  analogWrite(SPEED_PIN_2_2, 0);
-  delay(5000);
-  analogWrite(SPEED_PIN_0_1, 0);
-  analogWrite(SPEED_PIN_0_2, 1024);
-  analogWrite(SPEED_PIN_1_1, 0);
-  analogWrite(SPEED_PIN_1_2, 1024);
-  analogWrite(SPEED_PIN_2_1, 0);
-  analogWrite(SPEED_PIN_2_2, 1024);
-  delay(5000);
-}
-
-/*const char* ssid = WIFI_SSID;
+const char* ssid = WIFI_SSID;
 const char* password = WIFI_PASSWORD;
 String input;
 boolean stringComplete = false;
@@ -132,4 +97,4 @@ String init_swarm(String robot_name){
   }
   client.stop();
   return name;
-}*/
+}
