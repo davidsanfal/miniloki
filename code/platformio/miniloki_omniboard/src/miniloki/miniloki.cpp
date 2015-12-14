@@ -1,6 +1,9 @@
 #include "miniloki.h"
 
-MiniLoki::MiniLoki(int spd0Pin1, int spd0Pin2, int spd1Pin1, int spd1Pin2, int spd2Pin1, int spd2Pin2) {
+MiniLoki::MiniLoki(int spd0Pin1, int spd0Pin2,
+                   int spd1Pin1, int spd1Pin2,
+                   int spd2Pin1, int spd2Pin2,
+                   int spd0Min, int spd1Min, int spd2Min) {
   speed0Pin1 = spd0Pin1;
   speed0Pin2 = spd0Pin2;
   speed1Pin1 = spd1Pin1;
@@ -13,6 +16,9 @@ MiniLoki::MiniLoki(int spd0Pin1, int spd0Pin2, int spd1Pin1, int spd1Pin2, int s
   speed_X = 0;
   speed_Y = 0;
   speed_W = 0;
+  speed0Min = spd0Min;
+  speed1Min = spd1Min;
+  speed2Min = spd2Min;
 
 }
 
@@ -57,10 +63,22 @@ void MiniLoki::parse_string(String inputString) {
 }
 
 void MiniLoki::set_speed(int motor, float spd, float norm) {
-  int spd1=0, spd2=0, _spd;
-  _spd = map(abs(spd / norm) * 100, 0.0, 100.0, 0, 1024);
+  int spd1=0, spd2=0, _spd, _min_spd;
+  switch (motor) {
+    case 0:
+      _min_spd = speed0Min;
+    case 1:
+      _min_spd = speed1Min;
+    case 2:
+      _min_spd = speed2Min;
+  }
+  _spd = map(abs(spd / norm) * 100, 0.0, 100.0, _min_spd, 1024);
   if (spd < 0) spd2 = _spd;
   else spd1 = _spd;
+  if (spd == 0){
+    spd2 = 0;
+    spd1 = 0;
+  }
   switch (motor) {
     case 0:
       analogWrite(speed0Pin1, spd1);

@@ -2,7 +2,7 @@
 
 class MiniLoki {
   public:
-    MiniLoki(int, int, int, int, int, int);
+    MiniLoki(int, int, int, int, int, int, int, int, int);
     void parse_string(String);
     void set_speed(int, float, float);
   private:
@@ -18,4 +18,7 @@ class MiniLoki {
     int speed1Pin2;
     int speed2Pin1;
     int speed2Pin2;
+    int speed0Min;
+    int speed1Min;
+    int speed2Min;
 };
