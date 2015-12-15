@@ -63,7 +63,7 @@ void MiniLoki::parse_string(String inputString) {
 }
 
 void MiniLoki::set_speed(int motor, float spd, float norm) {
-  int spd1=0, spd2=0, _spd, _min_spd;
+  int spd1=1024, spd2=1024, _spd, _min_spd;
   switch (motor) {
     case 0:
       _min_spd = speed0Min;
@@ -72,12 +72,12 @@ void MiniLoki::set_speed(int motor, float spd, float norm) {
     case 2:
       _min_spd = speed2Min;
   }
-  _spd = map(abs(spd / norm) * 100, 0.0, 100.0, _min_spd, 1024);
-  if (spd < 0) spd2 = _spd;
+  _spd = map(abs(spd / norm) * 100, 0.0, 100.0, 1024, _min_spd);
+  if (spd > 0) spd2 = _spd;
   else spd1 = _spd;
   if (spd == 0){
-    spd2 = 0;
-    spd1 = 0;
+    spd2 = 1024;
+    spd1 = 1024;
   }
   switch (motor) {
     case 0:
