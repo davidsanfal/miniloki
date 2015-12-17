@@ -3,6 +3,7 @@
 #include <WiFiClient.h>
 #include "config.h"
 #include "miniloki/miniloki.h"
+#include <Servo.h>
 
 /*
 config.h
@@ -24,6 +25,7 @@ config.h
 #define SPEED_1_MIN 25
 #define SPEED_2_MIN 40
 
+Servo myservo;
 const char* ssid = WIFI_SSID;
 const char* password = WIFI_PASSWORD;
 String input;
@@ -57,6 +59,8 @@ void setup(void)
   pinMode(SPEED_PIN_1_2, OUTPUT);
   pinMode(SPEED_PIN_2_1, OUTPUT);
   pinMode(SPEED_PIN_2_2, OUTPUT);
+  pinMode(A0, INPUT);
+  myservo.attach(D5);
   loki.parse_string("0,0,0,");
 }
 
@@ -70,6 +74,8 @@ void loop(void)
       stringComplete = true;
     }
     if (stringComplete) {
+      myservo.write(90);
+      client.write(analogRead(A0));
       loki.parse_string(input);
       stringComplete = false;
     }
