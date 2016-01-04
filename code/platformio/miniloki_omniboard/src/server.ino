@@ -1,9 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266mDNS.h>
 #include <WiFiClient.h>
-#include "config.h"
+#include "../../../../../config.h"
 #include "miniloki/miniloki.h"
-#include <Servo.h>
 
 /*
 config.h
@@ -25,7 +24,6 @@ config.h
 #define SPEED_1_MIN 25
 #define SPEED_2_MIN 40
 
-Servo myservo;
 const char* ssid = WIFI_SSID;
 const char* password = WIFI_PASSWORD;
 String input;
@@ -59,9 +57,9 @@ void setup(void)
   pinMode(SPEED_PIN_1_2, OUTPUT);
   pinMode(SPEED_PIN_2_1, OUTPUT);
   pinMode(SPEED_PIN_2_2, OUTPUT);
+  pinMode(D5, OUTPUT);
   pinMode(A0, INPUT);
-  myservo.attach(D5);
-  loki.parse_string("0,0,0,");
+  loki.move();
 }
 
 void loop(void)
@@ -74,11 +72,33 @@ void loop(void)
       stringComplete = true;
     }
     if (stringComplete) {
-      myservo.write(90);
       client.write(analogRead(A0));
-      loki.parse_string(input);
+      parse_string(input, &loki.speed_X, &loki.speed_Y, &loki.speed_W);
+      loki.move();
       stringComplete = false;
     }
+  }
+}
+
+void parse_string(String inputString, float* speed_X, float* speed_Y, float* speed_W) {
+  int message_substring = 0;
+  String substr = "";
+  for (int i = 0 ; i < inputString.length(); i++) {
+    if (inputString[i] == ',' || i == inputString.length()-1) {
+      message_substring++;
+      switch (message_substring) {
+        case 1:
+          *speed_X = substr.toFloat();
+          substr = "";
+        case 2:
+          *speed_Y = substr.toFloat();
+          substr = "";
+        case 3:
+          *speed_W = substr.toFloat();
+          substr = "";
+      }
+    }
+    else substr += (char)inputString[i];
   }
 }
 

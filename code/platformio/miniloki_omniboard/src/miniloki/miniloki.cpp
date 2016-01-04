@@ -22,26 +22,7 @@ MiniLoki::MiniLoki(int spd0Pin1, int spd0Pin2,
 
 }
 
-void MiniLoki::parse_string(String inputString) {
-  int message_substring = 0;
-  String substr = "";
-  for (int i = 0 ; i < inputString.length(); i++) {
-    if (inputString[i] == ',' || i == inputString.length()-1) {
-      message_substring++;
-      switch (message_substring) {
-        case 1:
-          speed_X = substr.toFloat();
-          substr = "";
-        case 2:
-          speed_Y = substr.toFloat();
-          substr = "";
-        case 3:
-          speed_W = substr.toFloat();
-          substr = "";
-      }
-    }
-    else substr += (char)inputString[i];
-  }
+void MiniLoki::move() {
   speed_0 = (-speed_X / sin(PI / 3)) + (-speed_Y * cos(PI / 3)) - speed_W;
   speed_1 = speed_Y - speed_W;
   speed_2 = (speed_X / sin(PI / 3)) + (-speed_Y * cos(PI / 3)) - speed_W;

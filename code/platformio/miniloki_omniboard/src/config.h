@@ -1,4 +1,0 @@
-#define WIFI_SSID "BQ_CORP"
-#define WIFI_PASSWORD "%&Th3_M4Tr1X1234!="
-#define OVERMIND_IP "172.16.17.75"
-#define OVERMIND_PORT 5044
