@@ -40,7 +40,8 @@ void setup(void)
   Serial.begin(9600);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) delay(500);
-  String DNS_name = init_swarm("mini_loki");
+  //String DNS_name = init_swarm("mini_loki");
+  String DNS_name = "miniloki0";
 
   if (!MDNS.begin(DNS_name.c_str())) {
     while (1) {
@@ -65,7 +66,10 @@ void setup(void)
 void loop(void)
 {
   WiFiClient client = server.available();
-  //if (!client) {}
+  if (!client) {
+    Serial.println(WiFi.localIP());
+    delay(1000);
+  }
   while (client.connected()) {
     while (client.available()) {
       input = client.readStringUntil('\n');

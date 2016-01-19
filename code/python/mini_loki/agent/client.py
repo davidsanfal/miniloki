@@ -25,22 +25,20 @@ def client(ip="172.16.17.75", port=5044):
         if info['loki_0']:
             s.connect((info['loki_0'], 80))
             try:
+                b = 0
                 while True:
-                    b = 0
                     clock = pygame.time.Clock()
                     for _ in pygame.event.get():
                         pass
                     clock.tick(50)
                     boost = 0.7
-                    if joystick.get_button(7):
+                    if joystick.get_button(4):
                         boost = PRECISION
-                    elif joystick.get_button(6):
+                    elif joystick.get_button(5):
                         boost = BOOST
-                    if joystick.get_button(4) or joystick.get_button(5):
-                        b = 1
                     x = float(joystick.get_axis(1)) * boost
                     y = float(joystick.get_axis(0)) * boost
-                    w = float(joystick.get_axis(2)) * boost
+                    w = float(joystick.get_axis(3)) * boost
                     s.send("%.2f,%.2f,%.2f,%i,\n" % (x ** 3, y ** 3, w ** 3, b))
             except socket.error as e:
                 print e.message
