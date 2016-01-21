@@ -33,10 +33,5 @@ We use [Python](https://www.python.org/) to control miniloki with a joystick
 
 ```bash
 ~/miniloki$ cd code/python/
-~/miniloki/code/python$ sudo python -m mini_loki.overmind
-```
-
-```bash
-~/miniloki$ cd code/python/
-~/miniloki/code/python$ sudo python -m mini_loki.agent.client
+~/miniloki/code/python$ python client.py
 ```
