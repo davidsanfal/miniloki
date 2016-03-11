@@ -9,8 +9,6 @@ config.h
 
 #define WIFI_SSID "wifi_name"
 #define WIFI_PASSWORD "wifi_pass"
-#define OVERMIND_IP "master_ip"
-#define OVERMIND_PORT master_port
 */
 
 #define SPEED_PIN_0_1 D3
@@ -82,6 +80,7 @@ void loop(void)
       stringComplete = false;
     }
   }
+  delay(2);
 }
 
 void parse_string(String inputString, float* speed_X, float* speed_Y, float* speed_W) {

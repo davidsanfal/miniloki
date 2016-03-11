@@ -6,7 +6,7 @@ BOOST = 1
 PRECISION = 0.5
 
 
-def client(ip="172.16.7.185", port=80):
+def client(ip="10.125.154.135", port=80):
     pygame.init()
     pygame.joystick.init()
     joystick = pygame.joystick.Joystick(0)
@@ -28,7 +28,7 @@ def client(ip="172.16.7.185", port=80):
                     boost = BOOST
                 x = float(joystick.get_axis(1)) * boost
                 y = float(joystick.get_axis(0)) * boost
-                w = float(joystick.get_axis(3)) * boost
+                w = float(joystick.get_axis(2)) * boost
                 s.send("%.2f,%.2f,%.2f,%i,\n" % (x ** 3, y ** 3, w ** 3, b))
         except socket.error as e:
             print e.message
