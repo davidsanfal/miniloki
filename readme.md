@@ -35,3 +35,5 @@ We use [Python](https://www.python.org/) to control miniloki with a joystick
 ~/miniloki$ cd code/python/
 ~/miniloki/code/python$ python client.py
 ```
+
+Sponsored by BQ untill March 2016
